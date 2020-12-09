@@ -140,7 +140,6 @@ h2 span {
 */
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
-
 body {
     background: #fafafa;
 }
@@ -374,4 +373,75 @@ a[data-toggle="collapse"] {
 }
 #message-label {
     color: #999;
+}
+.welcome-description-block {
+    padding: 2rem 1rem;
+    background-color: #e9ecef;
+}
+.roboto {
+    font-family: 'Roboto';
+    color: black;
+}
+.welcome-title {
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 42px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.welcome-description {
+    padding-left: 12px;
+}
+.description-title {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.description-detail {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.description-item {
+    display: flex;
+}
+.description-item-detail-flex {
+    display: flex;
+    width: 100%;
+}
+.description-item-detail {
+    width: 100%;
+}
+.description-item-index {
+    width: 20px;
+}
+.mic-speaker-test-block {
+    margin-top: -5px;
+    margin-left: 5px;
+}
+.mic-speaker-switch-block {
+    color: #3e3e3e;
+}
+.username-div {
+    display: flex;
+    align-items: center;
+    margin-top: -5px;
+}
+.input-user-name {
+    height: 80%;
+}
+#btn-set-name {
+    height: 80%;
+    align-items: center;
+    display: flex;
+}
+.switch-label {
+    width: 100px;
 }

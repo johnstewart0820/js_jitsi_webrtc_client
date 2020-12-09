@@ -19,6 +19,7 @@
         integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
         integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link type="text/css" rel="stylesheet" href="/player.css">
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
@@ -32,7 +33,8 @@
     <meta name='viewport' content='initial-scale=1, viewport-fit=cover'>
 </head>
 
-<body onload="load(); onParagonLoad(); onInitVoiceChat();" onkeydown="handleKeyDown(event)" onkeyup="handleKeyUp(event)">
+<body onload="load(); onParagonLoad(); onInitVoiceChat();" onkeydown="handleKeyDown(event)"
+    onkeyup="handleKeyUp(event)">
     <div id="audioOutputSelectWrapper" style="display: none;">
     </div>
     <div class="wrapper">
@@ -46,16 +48,119 @@
         </nav>
 
         <div id="content" class="container">
-            <div class="jumbotron row">
-                <p class="display-4 col-md-6">
-                    LabEscape
-                </p>
+            <div class="roboto welcome-description-block row">
+                <div class="welcome-title">
+                    Welcome to LAB ESCAPE
+                </div>
+                <div class="welcome-description mt-2">
+                    <div class="description-title">
+                        Before “Click to Start” the Game you need to be aware of and set few things. Lets Begin the
+                        process.
+                    </div>
+                    <div class="description-detail mt-3">
+                        <div class="description-item mb-3">
+                            <div class="description-item-index">
+                                1 -
+                            </div>
+                            <div class="description-item-detail">
+                                You need to allow the browser to access your microphone
+                            </div>
+                        </div>
+                        <div class="description-item mb-3">
+                            <div class="description-item-index">
+                                2 -
+                            </div>
+                            <div class="description-item-detail-flex">
+                                You need to test your microphone and speaker to ensure you can hear and talk to your
+                                group.
+                                <div class="mic-speaker-test-block">
+                                    <button class="btn btn-primary" id="btn-mic-speaker-test-start"
+                                        onclick="toggleTest(this)">Start Test</button>
+                                    <button class="btn btn-secondary" id="btn-mic-speaker-test-stop"
+                                        onclick="toggleTest(this)">Stop Test</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="description-item mb-3">
+                            <div class="description-item-index">
+                                3 -
+                            </div>
+                            <div class="description-item-detail">
+                                The system will pick up the system default Microphone and Speakers
+                                You can change if you need to do so, but selecting the desired combination from the
+                                selection
+                                below. If everything is working fine, then you can skip this step and go to step 4.
+                                <div class="mic-speaker-switch-block mt-3">
+                                    <div>
+                                        <label class="mr-2 switch-label">switch speaker: </label>
+                                        <select id="audioOutputSelect" onchange="changeAudioOutput(this)"></select>
+                                    </div>
+                                    <div>
+                                        <label class="mr-2 switch-label">switch mic: </label>
+                                        <select id="audioInputSelect" onchange="changeAudioInput(this)"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="description-item mb-3">
+                            <div class="description-item-index">
+                                4 -
+                            </div>
+                            <div class="description-item-detail">
+                                By the way, as soon as you entered this webpage, you should hear everyone talking. You
+                                can join the conversation by pressing and holding the “T” key on your Keyboard. Release the
+                                “T” key to stop. This behavior is like Walki-Talki behavior. This “T” to Talk available during
+                                the game for you to communicate with the rest of the group members.
+                            </div>
+                        </div>
+                        <div class="description-item mb-3">
+                            <div class="description-item-index">
+                                5 -
+                            </div>
+                            <div class="description-item-detail-flex">
+                                You need to set your Name, so people know it is you who is talking. Put Set your Name here
+                                <div class="username-div ml-2">
+                                    <input class="mr-2 input-user-name" id="username" value="user">
+                                    <button class="btn btn-primary" id="btn-set-name" onclick="setUserName(this)">SET</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="description-item mb-3">
+                            <div class="description-item-index">
+                                6 -
+                            </div>
+                            <div class="description-item-detail">
+                                Do not click to start the game until everyone is ready to join. If you start the game,
+                                the
+                                count-down timer will begin immediately. So wait until everyone is ready.
+                            </div>
+                        </div>
+                        <div class="description-item mb-3">
+                            <div class="description-item-index">
+                                7 -
+                            </div>
+                            <div class="description-item-detail">
+                                When you are ready, “Click to start” the game in the below area. By the way, you can
+                                still
+                                text chat while you are inside the game by pressing the “Enter” key on your Keyboard.
+                                Click
+                                Enter to send the text for everyone to see.
+                            </div>
+                        </div>
+                        <div class="description-item">
+                            Enjoy, and have a wonderful time.
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-6" id="control-block">
                     <!-- <div class="mt-2"><label>All members are listeners.</label></div> -->
                     <div class="form-check form-check-inline mt-2 line_div">
                         <label>Mic & Speaker Test: &nbsp;</label>
-                        <button class="btn btn-primary" id="btn-mic-speaker-test-start" onclick="toggleTest(this)">Start Test</button>
-                        <button class="btn btn-secondary" id="btn-mic-speaker-test-stop" onclick="toggleTest(this)">Stop Test</button>
+                        <button class="btn btn-primary" id="btn-mic-speaker-test-start" onclick="toggleTest(this)">Start
+                            Test</button>
+                        <button class="btn btn-secondary" id="btn-mic-speaker-test-stop" onclick="toggleTest(this)">Stop
+                            Test</button>
                     </div>
                     <div class="form-check form-check-inline mt-2 line_div">
                         <label>switch speaker:&nbsp; </label>
@@ -260,7 +365,7 @@
         </div>
     </div>
     <div id="videoitem_area">
-        <div class ="videoitem" id="local_area">
+        <div class="videoitem" id="local_area">
             <!-- <div class="title_div">
                 <label class="title_lab">Local User</label>
             </div> -->
