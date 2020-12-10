@@ -124,6 +124,11 @@ h2 span {
     display: flex;
     align-items: stretch;
 }
+#blur-background {
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    filter: blur(1px);
+}
 
 #sidebar {
     min-width: 250px;
@@ -444,4 +449,10 @@ a[data-toggle="collapse"] {
 }
 .switch-label {
     width: 100px;
+}
+#hover-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
 }

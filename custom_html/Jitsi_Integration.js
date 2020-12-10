@@ -168,7 +168,8 @@ function onRemoveTrack(track) {
  * That function is executed when the conference is joined
  */
 function onConferenceJoined() {
-    document.getElementById('control-block').style.display = 'block';
+    document.getElementById('blur-background').style.filter = 'blur(0px)';
+    document.getElementById('hover-background').style.display = 'none';
     console.log('>>>onConferenceJoined');
     console.log('conference joined!');
     isJoined = true;
@@ -453,8 +454,6 @@ if (JitsiMeetJS.mediaDevices.isDeviceChangeAvailable('output')) {
                                 d =>
                                     `<option value="${d.deviceId}">${d.label}</option>`)
                             .join('\n'));
-        
-                    $('#audioOutputSelectWrapper').show();
                 }
             });
         }, function(error){})
@@ -626,7 +625,6 @@ function switchSpeakerForLocalTest() {
 
 
 function onInitVoiceChat() {
-    document.getElementById('control-block').style.display = 'none';
 
     let stop_button = document.getElementById('btn-mic-speaker-test-stop');
     stop_button.style.display = 'none';

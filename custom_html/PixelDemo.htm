@@ -35,9 +35,8 @@
 
 <body onload="load(); onParagonLoad(); onInitVoiceChat();" onkeydown="handleKeyDown(event)"
     onkeyup="handleKeyUp(event)">
-    <div id="audioOutputSelectWrapper" style="display: none;">
-    </div>
-    <div class="wrapper">
+    <div id="hover-background"></div>
+    <div class="wrapper" id="blur-background">
         <nav id="sidebar">
             <div id="sidebarContent">
                 <div class="sidebar-header">
@@ -48,7 +47,7 @@
         </nav>
 
         <div id="content" class="container">
-            <div class="roboto welcome-description-block row">
+            <div class="roboto welcome-description-block row mb-3">
                 <div class="welcome-title">
                     Welcome to LAB ESCAPE
                 </div>
@@ -151,29 +150,6 @@
                         <div class="description-item">
                             Enjoy, and have a wonderful time.
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6" id="control-block">
-                    <!-- <div class="mt-2"><label>All members are listeners.</label></div> -->
-                    <div class="form-check form-check-inline mt-2 line_div">
-                        <label>Mic & Speaker Test: &nbsp;</label>
-                        <button class="btn btn-primary" id="btn-mic-speaker-test-start" onclick="toggleTest(this)">Start
-                            Test</button>
-                        <button class="btn btn-secondary" id="btn-mic-speaker-test-stop" onclick="toggleTest(this)">Stop
-                            Test</button>
-                    </div>
-                    <div class="form-check form-check-inline mt-2 line_div">
-                        <label>switch speaker:&nbsp; </label>
-                        <select id="audioOutputSelect" onchange="changeAudioOutput(this)"></select>
-                    </div>
-                    <div class="form-check form-check-inline mt-2 line_div">
-                        <label>switch mic:&nbsp;&nbsp; </label>
-                        <select id="audioInputSelect" onchange="changeAudioInput(this)"></select>
-                    </div>
-                    <div class="form-check form-check-inline mt-2 line_div">
-                        <label>UserName: &nbsp;</label>
-                        <input id="username" value="user"> &nbsp;
-                        <button class="btn btn-primary" id="btn-set-name" onclick="setUserName(this)">SET</button>
                     </div>
                 </div>
             </div>
