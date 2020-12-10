@@ -431,9 +431,6 @@ a[data-toggle="collapse"] {
     margin-top: -5px;
     margin-left: 5px;
 }
-.mic-speaker-switch-block {
-    color: #3e3e3e;
-}
 .username-div {
     display: flex;
     align-items: center;
@@ -446,9 +443,6 @@ a[data-toggle="collapse"] {
     height: 80%;
     align-items: center;
     display: flex;
-}
-.switch-label {
-    width: 100px;
 }
 #hover-background {
     position: absolute;
