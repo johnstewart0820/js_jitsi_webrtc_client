@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
-
+use App\Http\Controllers\API\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +22,4 @@ Route::get('/auth/redirect', function () {
     return Socialite::driver('wordpress')->redirect();
 });
 
-Route::get('/api/auth/callback', function () {
-    $user = Socialite::driver('wordpress')->user();
-    // echo json_encode($user);
-});
+Route::get('/api/auth/callback', [AuthController::class, 'login']);

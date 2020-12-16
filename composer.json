@@ -15,7 +15,8 @@
         "laravel/framework": "^8.12",
         "laravel/socialite": "^5.1",
         "laravel/tinker": "^2.5",
-        "socialiteproviders/wordpress": "^4.1"
+        "socialiteproviders/wordpress": "^4.1",
+        "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
