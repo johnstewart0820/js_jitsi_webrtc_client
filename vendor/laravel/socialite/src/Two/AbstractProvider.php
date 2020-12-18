@@ -161,6 +161,17 @@ abstract class AbstractProvider implements ProviderContract
         return new RedirectResponse($this->getAuthUrl($state));
     }
 
+    public function getRedirectTotalUrl()
+    {
+        $state = null;
+
+        if ($this->usesState()) {
+            $this->request->session()->put('state', $state = $this->getState());
+        }
+
+        return $this->getAuthUrl($state);
+    }
+
     /**
      * Build the authentication URL for the provider from the given base URL.
      *

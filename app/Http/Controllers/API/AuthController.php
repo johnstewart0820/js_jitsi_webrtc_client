@@ -11,12 +11,11 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Config;
 class AuthController extends Controller
 {
-    public function login()
+    public function login(Request $request)
     {
         try {
-            $input_user = Socialite::driver('wordpress')->user();
-            $name = $input_user->name;
-            $email = $input_user->email;
+            $name = $request->name;
+            $email = $request->email;
             $password = '123456';
             $count = count(User::where(['email' => $email])->get());
             // registered

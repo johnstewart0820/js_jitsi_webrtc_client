@@ -33,7 +33,7 @@ return [
     'wordpress' => [
         'client_id' => env('WORDPRESS_CLIENT_ID'),
         'client_secret' => env('WORDPRESS_CLIENT_SECRET'),
-        'redirect' => env('APP_URL').'/api/auth/callback',
+        'redirect' => env('FRONTEND_URL').'/getToken',
     ],
 
 ];
