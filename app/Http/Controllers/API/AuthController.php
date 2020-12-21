@@ -30,7 +30,7 @@ class AuthController extends Controller
             return response()->json([
                 'code' => Config::get('constants.codes.success'),
                 'message' => Config::get('constants.messages.success'),
-                'data' => json_encode(['token' => $token])
+                'data' => ['token' => $token]
             ]);
         } catch (Exception $e) {
             // Something else happened, completely unrelated to Stripe
