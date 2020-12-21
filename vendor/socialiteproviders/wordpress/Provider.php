@@ -18,7 +18,7 @@ class Provider extends AbstractProvider
      */
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase('https://wpoauthserver.wvmodel.ca/?oauth=authorize', $state);
+        return $this->buildAuthUrlFromBase('https://portal.encade.org/?oauth=authorize', $state);
     }
 
     /**
