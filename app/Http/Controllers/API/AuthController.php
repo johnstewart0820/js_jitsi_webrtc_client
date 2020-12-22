@@ -13,9 +13,10 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
+        $user = Socialite::driver('wordpress')->user();
         try {
-            $name = $request->name;
-            $email = $request->email;
+            $name = $user->name;
+            $email = $user->email;
             $password = '123456';
             $count = count(User::where(['email' => $email])->get());
             // registered

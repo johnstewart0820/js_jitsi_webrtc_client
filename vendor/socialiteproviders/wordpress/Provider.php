@@ -55,8 +55,8 @@ class Provider extends AbstractProvider
             [
                 'id'       => $user['ID'],
                 'nickname' => $user['username'],
-                'name'     => $user['display_name'],
-                'email'    => Arr::get($user, 'email'),
+                'name'     => $user['user_login'],
+                'email'    => Arr::get($user, 'user_email'),
                 'avatar'   => $user['avatar_URL'],
             ]
         );
