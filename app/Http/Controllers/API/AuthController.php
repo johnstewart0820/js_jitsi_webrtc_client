@@ -29,7 +29,29 @@ class AuthController extends Controller
             $token = JWTAuth::attempt(['email' => $email, 'password' => $password]);
             return response()->json([
                 'code' => Config::get('constants.codes.success'),
-                'message' => Config::get('constants.messages.success'),
+                'message' => Config::get('constants.messages.login_success'),
+                'data' => ['token' => $token]
+            ]);
+        } catch (Exception $e) {
+            // Something else happened, completely unrelated to Stripe
+            return response()->json([
+                'code' => Config::get('constants.codes.server_error'), 
+                'message' => Config::get('constants.messages.server_error') 
+            ]);
+        }
+        
+    }
+
+    public function validateToken(Request $request)
+    {
+        try {
+            $user = JWTAuth::parseToken()->authenticate();   
+            $email = $user->email;
+            $password = '123456';
+            $token = JWTAuth::attempt(['email' => $email, 'password' => $password]);
+            return response()->json([
+                'code' => Config::get('constants.codes.success'),
+                'message' => Config::get('constants.messages.validate_success'),
                 'data' => ['token' => $token]
             ]);
         } catch (Exception $e) {

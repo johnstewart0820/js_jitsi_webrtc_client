@@ -2,7 +2,8 @@
 
 return [
     'messages' => [
-        'success' => 'Login Success',
+        'login_success' => 'Login Success',
+        'validate_success'=>'Validate Success',
         'server_error' => 'Server is not working well.'
     ],
     'codes' => [

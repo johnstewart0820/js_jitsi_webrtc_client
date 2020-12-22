@@ -26,3 +26,7 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::post('/auth/login', [AuthController::class, 'login']);
+
+Route::group(['middleware' => 'jwt.verify'], function () {
+    Route::get('/auth/validateToken', [AuthController::class, 'validateToken']);
+});
