@@ -76,7 +76,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $response = user($request->code);
+        $response = $this->user($request->code);
         try {
             $name = $response->name;
             $email = $response->email;
