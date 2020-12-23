@@ -9,14 +9,77 @@ use App\Models\User;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Config;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
+
 class AuthController extends Controller
 {
+    public $httpClient;
+
+    public function getHttpClient()
+    {
+        if (is_null($this->httpClient)) {
+            $this->httpClient = new Client();
+        }
+
+        return $this->httpClient;
+    }
+
+    public function user($code)
+    {
+        $response = $this->getAccessTokenResponse($code);
+
+        $user = $this->getUserByToken(
+            $token = Arr::get($response, 'access_token')
+        );
+
+        return [
+            'name' => $user->user_login,
+            'email' => $user->user_email
+        ];
+    }
+
+    protected function getTokenFields($code)
+    {
+        return [
+            'grant_type' => 'authorization_code',
+            'client_id' => env('WORDPRESS_CLIENT_ID'),
+            'client_secret' => env('WORDPRESS_CLIENT_SECRET'),
+            'code' => $code,
+            'redirect_uri' => env('FRONTEND_URL').'/getToken',
+        ];
+    }
+
+    public function getAccessTokenResponse($code)
+    {
+        $response = $this->getHttpClient()->post($this->getTokenUrl(), [
+            'headers' => ['Accept' => 'application/json'],
+            'form_params' => $this->getTokenFields($code),
+        ]);
+
+        return json_decode($response->getBody(), true);
+    }
+
+    public function getUserByToken($token)
+    {
+        $response = $this->getHttpClient()->get(
+            'https://wpoauthserver.wvmodel.ca/oauth/me',
+            [
+                'headers' => [
+                    'Authorization' => 'Bearer '.$token,
+                ],
+            ]
+        );
+
+        return json_decode($response->getBody()->getContents(), true);
+    }
+
     public function login(Request $request)
     {
-        $user = Socialite::driver('wordpress')->user();
+        $response = user($request->code);
         try {
-            $name = $user->name;
-            $email = $user->email;
+            $name = $response->name;
+            $email = $response->email;
             $password = '123456';
             $count = count(User::where(['email' => $email])->get());
             // registered
