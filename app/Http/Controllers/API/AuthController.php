@@ -52,7 +52,7 @@ class AuthController extends Controller
 
     public function getAccessTokenResponse($code)
     {
-        $response = $this->getHttpClient()->post($this->getTokenUrl(), [
+        $response = $this->getHttpClient()->post('https://portal.encade.org/oauth/token', [
             'headers' => ['Accept' => 'application/json'],
             'form_params' => $this->getTokenFields($code),
         ]);
@@ -63,7 +63,7 @@ class AuthController extends Controller
     public function getUserByToken($token)
     {
         $response = $this->getHttpClient()->get(
-            'https://wpoauthserver.wvmodel.ca/oauth/me',
+            'https://portal.encade.org/oauth/me',
             [
                 'headers' => [
                     'Authorization' => 'Bearer '.$token,
