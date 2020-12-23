@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
+use Illuminate\Support\Arr;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
@@ -34,8 +34,8 @@ class AuthController extends Controller
         );
 
         return [
-            'name' => $user->user_login,
-            'email' => $user->user_email
+            'name' => $user['user_login'],
+            'email' => $user['user_email'],
         ];
     }
 
@@ -78,8 +78,8 @@ class AuthController extends Controller
     {
         $response = $this->user($request->code);
         try {
-            $name = $response->name;
-            $email = $response->email;
+            $name = $response['name'];
+            $email = $response['email'];
             $password = '123456';
             $count = count(User::where(['email' => $email])->get());
             // registered
